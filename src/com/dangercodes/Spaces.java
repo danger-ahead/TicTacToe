@@ -8,6 +8,7 @@ public class Spaces {
 
     boolean t = true, f = false, won;
     int index, j = 0, pl1Index = 0, pl2Index = 0;
+
     int[] indexCheck = new int[9];
     int[] player1index = new int[9];        //stores indexes taken by player1
     int[] player2index = new int[9];        //stores indexes taken by player2
@@ -15,7 +16,12 @@ public class Spaces {
     public void input(){
 
         Scanner sc = new Scanner(System.in);
+
         int i;
+
+        System.out.println("Lets play Tic-Tac-Toe");
+
+        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
 
         for (i=1; t; i++) {                       //loop continues till either player1 or player2 has won
             if (i % 2 == 0) {                     //checks for turns
@@ -52,7 +58,7 @@ public class Spaces {
         }
     }
 
-    public int indexTaken(int a){
+    private int indexTaken(int a){
 
         boolean doesContain = Arrays.stream(indexCheck).anyMatch(x -> x==a);
         Arrays.sort(indexCheck);
@@ -68,6 +74,8 @@ public class Spaces {
 
         player1index[++pl1Index] = a;
 
+        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
+
         if (hasWonLineWise(player1index)){               //checks if player has line wise
             return t;
         }
@@ -82,6 +90,8 @@ public class Spaces {
     public boolean player2 (int a) {
 
         player2index[++pl2Index] = a;
+
+        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
 
         if (hasWonLineWise(player2index)){
             return t;
