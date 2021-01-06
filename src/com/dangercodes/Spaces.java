@@ -6,17 +6,18 @@ import java.util.Scanner;
 
 public class Spaces {
 
-    boolean t = true, f = false, check, won;
+    boolean t = true, f = false, won;
     int index, j = 0, pl1Index = 0, pl2Index = 0;
     int[] indexCheck = new int[9];
-    int[] player1index = new int[9];
-    int[] player2index = new int[9];
+    int[] player1index = new int[9];        //stores indexes taken by player1
+    int[] player2index = new int[9];        //stores indexes taken by player2
 
     public void input(){
+
         Scanner sc = new Scanner(System.in);
         int i;
 
-        for (i=1; t; i++) {
+        for (i=1; t; i++) {                       //loop continues till either player1 or player2 has won
             if (i % 2 == 0) {                     //checks for turns
                 System.out.print("Player 2 : Enter index : ");
 
@@ -49,38 +50,28 @@ public class Spaces {
                 }
             }
         }
-
     }
 
     public int indexTaken(int a){
+
         boolean doesContain = Arrays.stream(indexCheck).anyMatch(x -> x==a);
         Arrays.sort(indexCheck);
         if (doesContain==t)                      //match found
             return 1;
         else {
-            indexCheck[++j] = a;                 //store index in indexCheck
+            indexCheck[++j] = a;                 //store indexes in indexCheck
             return -1;
         }
     }
-/*//------------------------------------------------------------------------//
-    public boolean won(){                         //checks if someone has won
-        if (checker())
-            return t;
-        return f;
-    }
-    private boolean checker(){                    //checks who has won
-        if (check=t)
-            return t;
-        return f;
-    }
-//------------------------------------------------------------------------//*/
+
     public boolean player1 (int a) {
+
         player1index[++pl1Index] = a;
 
-        if (hasWonLineWise(player1index)){
+        if (hasWonLineWise(player1index)){               //checks if player has line wise
             return t;
         }
-        else if (hasWonDiagonally(player1index)){
+        else if (hasWonDiagonally(player1index)){        //checks if player has diagonally
             return t;
         }
         else{
@@ -89,6 +80,7 @@ public class Spaces {
     }
 
     public boolean player2 (int a) {
+
         player2index[++pl2Index] = a;
 
         if (hasWonLineWise(player2index)){
@@ -103,11 +95,15 @@ public class Spaces {
     }
 
     private boolean hasWonLineWise(int[] arr){
+
         ArrayList<Integer> arrList = new ArrayList<Integer>(arr.length);
-        for (int i : arr)
+        for (int i : arr)           //adding items in ArrayList
         {
             arrList.add(i);
         }
+
+        //checks for index values in player's taken indexes (line wise)//
+
         if (arrList.contains(1)&&arrList.contains(2)&&arrList.contains(3))
             return t;
         else if (arrList.contains(4)&&arrList.contains(5)&&arrList.contains(6))
@@ -124,11 +120,15 @@ public class Spaces {
             return f;
     }
     private boolean hasWonDiagonally(int[] arr){
+
         ArrayList<Integer> arrList2 = new ArrayList<Integer>(arr.length);
         for (int i : arr)
         {
             arrList2.add(i);
         }
+
+        //checks for index values in player's taken indexes (diagonally)//
+
         if (arrList2.contains(1)&&arrList2.contains(5)&&arrList2.contains(9))
             return t;
         else if (arrList2.contains(3)&&arrList2.contains(5)&&arrList2.contains(7))
