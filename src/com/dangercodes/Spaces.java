@@ -28,7 +28,13 @@ public class Spaces {
                 System.out.print("Player 2 : Enter index : ");
 
                 while (t) {
-                    index = sc.nextInt();
+                    while(t){
+                        index = sc.nextInt();
+                        if(isBetween1to9(index))
+                            break;
+                        else
+                            System.out.print("Enter valid index position between 1 to 9.\nPlayer 2 : Enter index : ");
+                    }
                     if (indexTaken(index) == 1) {       //index has been taken
                         System.out.print("Index Taken, enter another index.\nPlayer 2 : Enter index : ");
                     } else
@@ -43,7 +49,13 @@ public class Spaces {
                 System.out.print("Player 1 : Enter index : ");
 
                 while (t) {
-                    index = sc.nextInt();
+                    while(t){
+                        index = sc.nextInt();
+                        if(isBetween1to9(index))
+                            break;
+                        else
+                            System.out.print("Enter valid index position between 1 to 9.\nPlayer 1 : Enter index : ");
+                    }
                     if (indexTaken(index) == 1) {       //index has been taken
                         System.out.print("Index Taken, enter another index.\nPlayer 1 : Enter index : ");
                     } else
@@ -56,6 +68,7 @@ public class Spaces {
                 }
             }
         }
+        sc.close();
     }
 
     private int indexTaken(int a){
@@ -68,6 +81,12 @@ public class Spaces {
             indexCheck[++j] = a;                 //store indexes in indexCheck
             return -1;
         }
+    }
+
+    private boolean isBetween1to9(int x){
+        if (x>=1 && x<=9)
+            return t;
+        return f;
     }
 
     public boolean player1 (int a) {
