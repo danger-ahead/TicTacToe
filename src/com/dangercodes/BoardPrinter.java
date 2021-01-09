@@ -6,14 +6,14 @@ public class BoardPrinter {
 
     BoardPrinter(int[] arr1, int[] arr2){
 
-        ArrayList<Integer> arrList = new ArrayList<Integer>(arr1.length);
+        ArrayList<Integer> arrList = new ArrayList<>(arr1.length);
 
         for (int i : arr1)
         {
             arrList.add(i);
         }
 
-        ArrayList<Integer> arrList2 = new ArrayList<Integer>(arr2.length);
+        ArrayList<Integer> arrList2 = new ArrayList<>(arr2.length);
 
         for (int i : arr2)
         {
@@ -35,9 +35,7 @@ public class BoardPrinter {
 
     }
     private boolean isFactorOf3(int x){
-        if (x%3==0)
-            return true;
-        return false;
+        return x % 3 == 0;
     }
 
 }

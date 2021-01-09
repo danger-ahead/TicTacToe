@@ -9,7 +9,7 @@ public class Spaces {
     boolean t = true, f = false, won;
     int index, j = 0, pl1Index = 0, pl2Index = 0;
 
-    int[] indexCheck = new int[9];
+    int[] indexCheck = new int[10];
     int[] player1index = new int[9];        //stores indexes taken by player1
     int[] player2index = new int[9];        //stores indexes taken by player2
 
@@ -21,9 +21,9 @@ public class Spaces {
 
         System.out.println("Lets play Tic-Tac-Toe");
 
-        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
+        new BoardPrinter(player1index, player2index);
 
-        for (i=1; t; i++) {                       //loop continues till either player1 or player2 has won
+        for (i=1; i<=9; i++) {                       //loop continues till either player1 or player2 has won
             if (i % 2 == 0) {                     //checks for turns
                 System.out.print("Player 2 : Enter index : ");
 
@@ -69,6 +69,7 @@ public class Spaces {
             }
         }
         sc.close();
+        System.out.println("Game Finished!");
     }
 
     private int indexTaken(int a){
@@ -93,12 +94,12 @@ public class Spaces {
 
         player1index[++pl1Index] = a;
 
-        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
+        new BoardPrinter(player1index, player2index);
 
-        if (hasWonLineWise(player1index)){               //checks if player has line wise
+        if (hasWonLineWise(player1index)){               //checks if player has won line wise
             return t;
         }
-        else if (hasWonDiagonally(player1index)){        //checks if player has diagonally
+        else if (hasWonDiagonally(player1index)){        //checks if player has won diagonally
             return t;
         }
         else{
@@ -110,7 +111,7 @@ public class Spaces {
 
         player2index[++pl2Index] = a;
 
-        BoardPrinter boardPrinter = new BoardPrinter(player1index, player2index);
+        new BoardPrinter(player1index, player2index);
 
         if (hasWonLineWise(player2index)){
             return t;
@@ -125,7 +126,7 @@ public class Spaces {
 
     private boolean hasWonLineWise(int[] arr){
 
-        ArrayList<Integer> arrList = new ArrayList<Integer>(arr.length);
+        ArrayList<Integer> arrList = new ArrayList<>(arr.length);
         for (int i : arr)           //adding items in ArrayList
         {
             arrList.add(i);
@@ -150,7 +151,7 @@ public class Spaces {
     }
     private boolean hasWonDiagonally(int[] arr){
 
-        ArrayList<Integer> arrList2 = new ArrayList<Integer>(arr.length);
+        ArrayList<Integer> arrList2 = new ArrayList<>(arr.length);
         for (int i : arr)
         {
             arrList2.add(i);
