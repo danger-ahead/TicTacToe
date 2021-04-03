@@ -27,7 +27,7 @@ public class BoardPrinter {
             else if (arrList2.contains(i))
                 System.out.print("o ");
             else
-                System.out.print(i+" ");
+                System.out.print("-"+" ");
 
             if (isFactorOf3(i))
                 System.out.println();       //changes the line after 3 elements in each row
